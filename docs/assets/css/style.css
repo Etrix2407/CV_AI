@@ -258,7 +258,8 @@ strong { font-weight: 600; }
   transition: background .2s, color .2s;
 }
 
-.nav__link::before { content: "#"; color: var(--accent-2); margin-right: 2px; }
+/* Liens affichés comme des appels de fonction : « profil() » */
+.nav__link::after { content: "()"; color: var(--accent-2); }
 .nav__link:hover { text-decoration: none; background: var(--accent-soft); color: var(--accent); }
 
 /* 6. Sections ------------------------------------------------------------ */

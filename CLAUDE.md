@@ -13,7 +13,8 @@ assets/css/print.css     # styles impression / PDF A4
 assets/js/theme.js       # bascule mode clair / sombre (aucun JS dans le HTML)
 assets/images/           # photo et images
 build.py                 # génère docs/ à partir des sources ci-dessus
-docs/                    # site produit (régénéré à chaque build, publié via GitHub Pages)
+docs/                    # site produit (régénéré à chaque build)
+.github/workflows/pages.yml  # build + publication GitHub Pages à chaque push sur main
 requirements.txt
 ```
 

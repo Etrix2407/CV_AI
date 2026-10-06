@@ -1,0 +1,48 @@
+/* CV — impression / export PDF (chargé avec media="print").
+   Toujours en mode clair, sans fond, sans animation. */
+
+@page { size: A4; margin: 14mm; }
+
+:root,
+:root[data-theme="dark"],
+:root:not([data-theme="light"]) {
+  --bg: #fff;
+  --surface: #fff;
+  --surface-alt: #fff;
+  --text: #000;
+  --muted: #444;
+  --accent: #059669;
+  --accent-2: #7c3aed;
+  --border: #ddd;
+  --shadow: none;
+}
+
+body { font-size: 12.5px; background: #fff; }
+
+* { animation: none !important; transition: none !important; }
+
+.page { padding: 0; max-width: none; }
+
+.theme-toggle,
+.nav,
+.footer,
+.window__bar,
+.hero__name::after { display: none; }
+
+.window { border: none; }
+.hero__body { padding: 0 0 8px; }
+
+.card {
+  border: none;
+  padding: 0;
+  margin-bottom: 14px;
+}
+
+/* Une section peut continuer sur la page suivante, mais un titre n'est jamais
+   séparé de son contenu et une ligne de liste n'est jamais coupée. */
+.card__title,
+.card__body h3 { break-after: avoid; }
+
+.card__body li { break-inside: avoid; }
+
+a { color: inherit; }

@@ -1,6 +1,6 @@
 ---
 name: Ethan Nickels
-title: Étudiant en informatique, orientation Intelligence Artificielle
+title: Développeur IA junior · Machine learning & agents LLM
 lang: fr
 photo: photo.jpg
 email: ethannickels2@gmail.com
@@ -10,9 +10,32 @@ linkedin: www.linkedin.com/in/ethan-nickels
 GitHub: https://github.com/Etrix2407
 ---
 
+## Projets
+
+### Prédiction de revenus – dataset Adult
+**Python · pandas · scikit-learn** · [GitHub](https://github.com/Etrix2407/examen_ML/tree/main/adult)
+
+- Problème : prédire si une personne gagne plus de 50 000 $ par an à partir de données de recensement
+- Preprocessing, sélection de variables et comparaison de 6 combinaisons de modèles (arbre de décision, KNN, Random Forest)
+- Pipeline final : 85,6 % d'accuracy et ROC-AUC de 0,91 sur le jeu de test
+
+### Classification d'articles par embeddings
+**Python · Sentence-Transformers · FAISS · PCA** · [GitHub](https://github.com/Etrix2407/examen_ML/tree/main/classification_article)
+
+- Problème : déterminer automatiquement si un document Word est un article de sport ou de cuisine
+- Base de données vectorielle FAISS et classification par similarité sémantique
+- Visualisation des embeddings en 2D par PCA
+
+### Agent IA de gestion de tâches
+**Python · Google ADK · LiteLLM · Ollama** · [GitHub](https://github.com/Etrix2407/examen_ML/tree/main/todo_agent)
+
+- Problème : gérer une to-do list en langage naturel avec un LLM exécuté en local
+- Boucle agentique ReAct avec outils Python (ajout, suppression, tri par priorité, regroupement par tag)
+- Tests unitaires des outils
+
 ## Profil
 
-Étudiant de 24 ans en Intelligence Artificielle, intéressé par le machine learning et le développement en Python. Je développe progressivement mes compétences en programmation et en analyse de données à travers mes projets personels. Je recherche une opportunité pour continuer à apprendre, gagner en expérience et contribuer sérieusement à une équipe technique.
+Développeur IA junior à la recherche d'un premier emploi (CDI ou CDD) en IA / machine learning dès janvier 2027, avec une stack Python, pandas, scikit-learn, embeddings (FAISS) et agents LLM (Google ADK).
 
 ## Formation
 
@@ -33,46 +56,37 @@ GitHub: https://github.com/Etrix2407
 
 ## Expériences
 
-### Jobiste – Service pharmacie
-**CHdN** · Août 2022
-
-- Assistance aux préparations
-- Gestion des stocks
-- Travail en équipe dans un environnement structuré
-
-### Jobiste – Service logistique
-**CHdN** · Août 2020
-
-- Support aux opérations de stockage et distribution interne
-- Organisation de matériel médical
-
-### Caissier
-**Delitraiteur** · Juillet 2018
-
-- Accueil et service clients
-- Gestion des transactions et encaissements
-
-### Technicien de surface
-**Sodexo** · Janvier 2018
-
-- Nettoyage en milieu hospitalier
-- Respect des règles d'hygiène
+- **Jobiste – Service pharmacie** · CHdN · Août 2022 : préparations et gestion des stocks
+- **Jobiste – Service logistique** · CHdN · Août 2020 : stockage et distribution interne de matériel médical
+- **Caissier** · Delitraiteur · Juillet 2018 : accueil clients et encaissements
+- **Technicien de surface** · Sodexo · Janvier 2018 : nettoyage en milieu hospitalier
 
 ## Compétences
+
+### Langages
+
+- Python, Java, C
+- HTML, CSS, JavaScript (bases)
+
+### Machine learning et IA
+
+- pandas, NumPy, scikit-learn (preprocessing, pipelines, arbres de décision, KNN, Random Forest)
+- Visualisation : Matplotlib, seaborn
+- Embeddings (Sentence-Transformers), base vectorielle FAISS, PCA
+- Agents LLM : Google ADK, LiteLLM, Ollama
+- IA générative comme assistant de développement
+
+### Outils
+
+- Git, GitHub
+- Jupyter Notebook
 
 ### Langues
 
 - Français : langue maternelle
 - Anglais : niveau B2 (intermédiaire avancé)
 
-### Techniques et bureautiques
-
-- Suite Office (Word, Excel, …)
-- Python, Java, C
-- Web basique (HTML, CSS, JavaScript)
-- Utilisation des IA générative pour booster ma productivité
-
 ## Centres d'intérêt
 
 - **Sports** : escalade
-- **Informatique** : participation à des projets étudiants, programmation et jeux de logique
+- **Informatique** : programmation et jeux de logique

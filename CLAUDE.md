@@ -5,11 +5,15 @@ CV en page web, généré à partir d'un fichier Markdown.
 ## Structure
 
 ```
-CV.md            # contenu du CV (front matter + Markdown) — seule source du texte
-assets/          # photo et fichiers statiques
-template.html    # template Jinja2 (mise en page + CSS)
-build.py         # génère docs/index.html à partir de CV.md
-docs/            # site généré (publiable via GitHub Pages)
+content/cv.md            # contenu du CV (front matter + Markdown) — seule source du texte
+templates/index.html     # structure HTML (Jinja2), aucun style ni texte du CV
+templates/partials/      # fragments réutilisables (icônes SVG)
+assets/css/style.css     # styles écran (thème, mise en page, responsive)
+assets/css/print.css     # styles impression / PDF A4
+assets/js/theme.js       # bascule mode clair / sombre (aucun JS dans le HTML)
+assets/images/           # photo et images
+build.py                 # génère dist/ à partir des sources ci-dessus
+dist/                    # site produit (régénéré à chaque build, ignoré par Git)
 requirements.txt
 ```
 
@@ -17,10 +21,10 @@ requirements.txt
 
 ```bash
 pip install -r requirements.txt   # markdown-it-py, python-frontmatter, jinja2
-python build.py                   # génère docs/index.html
+python build.py                   # génère dist/index.html
 ```
 
-Après toute modification de `CV.md`, `template.html` ou `build.py`, relancer `python build.py` et vérifier que la génération passe sans erreur.
+Après toute modification de `content/cv.md`, `templates/`, `assets/` ou `build.py`, relancer `python build.py` et vérifier que la génération passe sans erreur.
 
 ## Règles de contenu
 
@@ -46,3 +50,6 @@ Après toute modification de `CV.md`, `template.html` ou `build.py`, relancer `p
 
 ## Avant de terminer une tâche
 
+1. Relancer `python build.py` sans erreur.
+2. Vérifier que `dist/index.html` reflète bien le contenu de `content/cv.md`.
+3. Résumer brièvement ce qui a changé.

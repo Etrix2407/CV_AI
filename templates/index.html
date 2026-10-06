@@ -1,0 +1,57 @@
+{% from "partials/icons.html" import icon %}
+<!doctype html>
+<html lang="{{ meta.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ meta.name }} — CV</title>
+  <meta name="description" content="{{ meta.name }} — {{ meta.title }}">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/print.css" media="print">
+  <script src="assets/js/theme.js"></script>
+</head>
+<body>
+  <button class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">
+    {{ icon("sun") }}{{ icon("moon") }}
+  </button>
+
+  <div class="page">
+    <header class="hero window">
+      <div class="window__bar" aria-hidden="true">
+        <span class="window__tab">{{ icon("file") }}{{ meta.name | lower | replace(" ", "-") }}.md</span>
+      </div>
+      <div class="hero__body">
+        {% if photo %}<img class="hero__photo" src="{{ photo }}" alt="{{ meta.name }}">{% endif %}
+        <div class="hero__info">
+          <h1 class="hero__name">{{ meta.name }}</h1>
+          {% if meta.title %}<p class="hero__title">{{ meta.title }}</p>{% endif %}
+          <ul class="contacts">
+            {% for contact in contacts %}
+            <li class="contacts__item">
+              {{ icon(contact.kind) }}
+              {% if contact.href %}<a href="{{ contact.href }}"{% if contact.href.startswith("http") %} target="_blank" rel="noopener"{% endif %}>{{ contact.label }}</a>{% else %}{{ contact.label }}{% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Sections">
+      {% for section in sections %}<a class="nav__link" href="#{{ section.id }}">{{ section.title }}</a>{% endfor %}
+    </nav>
+
+    <main>
+      {% for section in sections %}
+      <section class="card" id="{{ section.id }}">
+        <h2 class="card__title">{{ section.title }}</h2>
+        <div class="card__body">{{ section.html | safe }}</div>
+      </section>
+      {% endfor %}
+    </main>
+
+    <footer class="footer">{{ meta.name }}</footer>
+  </div>
+</body>
+</html>

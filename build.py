@@ -1,4 +1,4 @@
-"""Génère le CV en page web (docs/index.html) à partir de CV.md."""
+"""Génère le CV en page web (dist/) à partir de content/cv.md."""
 
 import re
 import shutil
@@ -10,9 +10,10 @@ from jinja2 import Environment, FileSystemLoader
 from markdown_it import MarkdownIt
 
 ROOT = Path(__file__).parent
-SOURCE = ROOT / "CV.md"
+CONTENT = ROOT / "content" / "cv.md"
+TEMPLATES = ROOT / "templates"
 ASSETS = ROOT / "assets"
-OUTPUT = ROOT / "docs"
+DIST = ROOT / "docs"
 
 
 def slugify(text):
@@ -32,39 +33,49 @@ def split_sections(content):
     return sections
 
 
-def contact_links(meta):
-    """Prépare les liens cliquables des informations de contact."""
-    links = {}
+def as_url(value):
+    """Ajoute https:// à une adresse web qui n'en a pas."""
+    return value if value.startswith("http") else f"https://{value}"
+
+
+def build_contacts(meta):
+    """Liste ordonnée des contacts : type (pour l'icône), texte affiché, lien éventuel."""
+    contacts = []
     if meta.get("email"):
-        links["email"] = f"mailto:{meta['email']}"
+        contacts.append({"kind": "email", "label": meta["email"], "href": f"mailto:{meta['email']}"})
     if meta.get("phone"):
-        links["phone"] = "tel:" + re.sub(r"[^\d+]", "", str(meta["phone"]))
-    if meta.get("linkedin"):
-        url = meta["linkedin"]
-        links["linkedin"] = url if url.startswith("http") else f"https://{url}"
-    return links
+        phone = str(meta["phone"])
+        contacts.append({"kind": "phone", "label": phone, "href": "tel:" + re.sub(r"[^\d+]", "", phone)})
+    if meta.get("address"):
+        contacts.append({"kind": "address", "label": meta["address"], "href": None})
+    for kind in ("linkedin", "github"):
+        if meta.get(kind):
+            url = as_url(meta[kind])
+            contacts.append({"kind": kind, "label": re.sub(r"^https?://", "", url), "href": url})
+    return contacts
 
 
 def main():
-    cv = frontmatter.load(SOURCE)
-    meta = cv.metadata
+    cv = frontmatter.load(CONTENT)
+    meta = {key.lower(): value for key, value in cv.metadata.items()}
 
-    OUTPUT.mkdir(exist_ok=True)
+    # dist/ est entièrement régénéré : sources et résultat ne se mélangent jamais.
+    if DIST.exists():
+        shutil.rmtree(DIST)
+    shutil.copytree(ASSETS, DIST / "assets")
+
     photo = meta.get("photo")
-    if photo and (ASSETS / photo).is_file():
-        shutil.copy(ASSETS / photo, OUTPUT / photo)
-    else:
-        photo = None
+    photo_src = f"assets/images/{photo}" if photo and (ASSETS / "images" / photo).is_file() else None
 
-    env = Environment(loader=FileSystemLoader(ROOT), autoescape=True)
-    html = env.get_template("template.html").render(
+    env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=True)
+    html = env.get_template("index.html").render(
         meta=meta,
-        photo=photo,
-        links=contact_links(meta),
+        photo=photo_src,
+        contacts=build_contacts(meta),
         sections=split_sections(cv.content),
     )
-    (OUTPUT / "index.html").write_text(html, encoding="utf-8")
-    print(f"CV généré : {(OUTPUT / 'index.html').relative_to(ROOT)}")
+    (DIST / "index.html").write_text(html, encoding="utf-8")
+    print(f"CV généré : {(DIST / 'index.html').relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

@@ -7,15 +7,19 @@ email: ethannickels@gmail.com
 phone: "+32467123361"
 address: 13 Au Puits de la Mine, 6630 Martelange
 linkedin: www.linkedin.com/in/ethan-nickels
+GitHub: https://github.com/Etrix2407
 ---
 
 ## Profil
 
-Étudiant de 24 ans en Intelligence Artificielle, intéressé par le machine learning et le développement en Python. Je développe progressivement mes compétences en programmation et en analyse de données à travers mes projets académiques. Je recherche une opportunité pour continuer à apprendre, gagner en expérience et contribuer sérieusement à une équipe technique.
+Étudiant de 24 ans en Intelligence Artificielle, intéressé par le machine learning et le développement en Python. Je développe progressivement mes compétences en programmation et en analyse de données à travers mes projets personels. Je recherche une opportunité pour continuer à apprendre, gagner en expérience et contribuer sérieusement à une équipe technique.
 
 ## Formation
 
 ### En cours
+formation en Développement IA - Technobel
+
+### 2024 | 2026
 **Bachelier en informatique, orientation Intelligence Artificielle** – IESN, Namur
 
 ### 2021 | 2022
@@ -66,6 +70,7 @@ Solvay, Bruxelles
 - Suite Office (Word, Excel, …)
 - Python, Java, C
 - Web basique (HTML, CSS, JavaScript)
+- Utilisation des IA générative pour booster ma productivité
 
 ## Centres d'intérêt
 

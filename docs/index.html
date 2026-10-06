@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ethan Nickels — CV</title>
-  <meta name="description" content="Ethan Nickels — Étudiant en informatique, orientation Intelligence Artificielle">
+  <meta name="description" content="Ethan Nickels — Développeur IA junior · Machine learning &amp; agents LLM">
   <meta name="color-scheme" content="light dark">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/print.css" media="print">
@@ -25,7 +25,7 @@
         <img class="hero__photo" src="assets/images/photo.jpg" alt="Ethan Nickels">
         <div class="hero__info">
           <h1 class="hero__name">Ethan Nickels</h1>
-          <p class="hero__title">Étudiant en informatique, orientation Intelligence Artificielle</p>
+          <p class="hero__title">Développeur IA junior · Machine learning &amp; agents LLM</p>
           <ul class="contacts">
             
             <li class="contacts__item">
@@ -35,7 +35,7 @@
             
             <li class="contacts__item">
               <svg class="icon icon--phone" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
-              <a href="tel:">demandez moi</a>
+              <a href="tel:">demandez-moi</a>
             </li>
             
             <li class="contacts__item">
@@ -59,27 +59,53 @@
     </header>
 
     <nav class="nav" aria-label="Sections">
-      <a class="nav__link" href="#profil">Profil</a><a class="nav__link" href="#formation">Formation</a><a class="nav__link" href="#experiences">Expériences</a><a class="nav__link" href="#competences">Compétences</a><a class="nav__link" href="#centres-d-interet">Centres d&#39;intérêt</a>
+      <a class="nav__link" href="#projets">Projets</a><a class="nav__link" href="#profil">Profil</a><a class="nav__link" href="#formation">Formation</a><a class="nav__link" href="#experiences">Expériences</a><a class="nav__link" href="#competences">Compétences</a><a class="nav__link" href="#centres-d-interet">Centres d&#39;intérêt</a>
     </nav>
 
     <main>
       
+      <section class="card" id="projets">
+        <h2 class="card__title">Projets</h2>
+        <div class="card__body"><h3>Prédiction de revenus – dataset Adult</h3>
+<p><strong>Python · pandas · scikit-learn</strong> · <a href="https://github.com/Etrix2407/examen_ML/tree/main/adult">GitHub</a></p>
+<ul>
+<li>Problème : prédire si une personne gagne plus de 50 000 $ par an à partir de données de recensement</li>
+<li>Preprocessing, sélection de variables et comparaison de 6 combinaisons de modèles (arbre de décision, KNN, Random Forest)</li>
+<li>Pipeline final : 85,6 % d'accuracy et ROC-AUC de 0,91 sur le jeu de test</li>
+</ul>
+<h3>Classification d'articles par embeddings</h3>
+<p><strong>Python · Sentence-Transformers · FAISS · PCA</strong> · <a href="https://github.com/Etrix2407/examen_ML/tree/main/classification_article">GitHub</a></p>
+<ul>
+<li>Problème : déterminer automatiquement si un document Word est un article de sport ou de cuisine</li>
+<li>Base de données vectorielle FAISS et classification par similarité sémantique</li>
+<li>Visualisation des embeddings en 2D par PCA</li>
+</ul>
+<h3>Agent IA de gestion de tâches</h3>
+<p><strong>Python · Google ADK · LiteLLM · Ollama</strong> · <a href="https://github.com/Etrix2407/examen_ML/tree/main/todo_agent">GitHub</a></p>
+<ul>
+<li>Problème : gérer une to-do list en langage naturel avec un LLM exécuté en local</li>
+<li>Boucle agentique ReAct avec outils Python (ajout, suppression, tri par priorité, regroupement par tag)</li>
+<li>Tests unitaires des outils</li>
+</ul>
+</div>
+      </section>
+      
       <section class="card" id="profil">
         <h2 class="card__title">Profil</h2>
-        <div class="card__body"><p>Étudiant de 24 ans en Intelligence Artificielle, intéressé par le machine learning et le développement en Python. Je développe progressivement mes compétences en programmation et en analyse de données à travers mes projets personels. Je recherche une opportunité pour continuer à apprendre, gagner en expérience et contribuer sérieusement à une équipe technique.</p>
+        <div class="card__body"><p>Développeur IA junior à la recherche d'un premier emploi (CDI ou CDD) en IA / machine learning dès janvier 2027, avec une stack Python, pandas, scikit-learn, embeddings (FAISS) et agents LLM (Google ADK).</p>
 </div>
       </section>
       
       <section class="card" id="formation">
         <h2 class="card__title">Formation</h2>
         <div class="card__body"><h3>En cours</h3>
-<p>formation en Développement IA - Technobel</p>
+<p><strong>formation en Développement IA</strong> – Technobel</p>
 <h3>2024 | 2026</h3>
 <p><strong>Bachelier en informatique, orientation Intelligence Artificielle</strong> – IESN, Namur</p>
 <h3>2021 | 2022</h3>
-<p>Henallux, Arlon</p>
+<p><strong>Bachelier en comptabilité</strong> – Henallux, Arlon</p>
 <h3>2020 | 2021</h3>
-<p>Solvay, Bruxelles</p>
+<p><strong>Ingénieur de gestion</strong> – Solvay, Bruxelles</p>
 <h3>2020</h3>
 <p><strong>CESS</strong> – École Libre de Lorraine, Messancy</p>
 </div>
@@ -87,47 +113,39 @@
       
       <section class="card" id="experiences">
         <h2 class="card__title">Expériences</h2>
-        <div class="card__body"><h3>Jobiste – Service pharmacie</h3>
-<p><strong>CHdN</strong> · Août 2022</p>
-<ul>
-<li>Assistance aux préparations</li>
-<li>Gestion des stocks</li>
-<li>Travail en équipe dans un environnement structuré</li>
-</ul>
-<h3>Jobiste – Service logistique</h3>
-<p><strong>CHdN</strong> · Août 2020</p>
-<ul>
-<li>Support aux opérations de stockage et distribution interne</li>
-<li>Organisation de matériel médical</li>
-</ul>
-<h3>Caissier</h3>
-<p><strong>Delitraiteur</strong> · Juillet 2018</p>
-<ul>
-<li>Accueil et service clients</li>
-<li>Gestion des transactions et encaissements</li>
-</ul>
-<h3>Technicien de surface</h3>
-<p><strong>Sodexo</strong> · Janvier 2018</p>
-<ul>
-<li>Nettoyage en milieu hospitalier</li>
-<li>Respect des règles d'hygiène</li>
+        <div class="card__body"><ul>
+<li><strong>Jobiste – Service pharmacie</strong> · CHdN · Août 2022 : préparations et gestion des stocks</li>
+<li><strong>Jobiste – Service logistique</strong> · CHdN · Août 2020 : stockage et distribution interne de matériel médical</li>
+<li><strong>Caissier</strong> · Delitraiteur · Juillet 2018 : accueil clients et encaissements</li>
+<li><strong>Technicien de surface</strong> · Sodexo · Janvier 2018 : nettoyage en milieu hospitalier</li>
 </ul>
 </div>
       </section>
       
       <section class="card" id="competences">
         <h2 class="card__title">Compétences</h2>
-        <div class="card__body"><h3>Langues</h3>
+        <div class="card__body"><h3>Langages</h3>
+<ul>
+<li>Python, Java, C</li>
+<li>HTML, CSS, JavaScript (bases)</li>
+</ul>
+<h3>Machine learning et IA</h3>
+<ul>
+<li>pandas, NumPy, scikit-learn (preprocessing, pipelines, arbres de décision, KNN, Random Forest)</li>
+<li>Visualisation : Matplotlib, seaborn</li>
+<li>Embeddings (Sentence-Transformers), base vectorielle FAISS, PCA</li>
+<li>Agents LLM : Google ADK, LiteLLM, Ollama</li>
+<li>IA générative comme assistant de développement</li>
+</ul>
+<h3>Outils</h3>
+<ul>
+<li>Git, GitHub</li>
+<li>Jupyter Notebook</li>
+</ul>
+<h3>Langues</h3>
 <ul>
 <li>Français : langue maternelle</li>
 <li>Anglais : niveau B2 (intermédiaire avancé)</li>
-</ul>
-<h3>Techniques et bureautiques</h3>
-<ul>
-<li>Suite Office (Word, Excel, …)</li>
-<li>Python, Java, C</li>
-<li>Web basique (HTML, CSS, JavaScript)</li>
-<li>Utilisation des IA générative pour booster ma productivité</li>
 </ul>
 </div>
       </section>
@@ -136,7 +154,7 @@
         <h2 class="card__title">Centres d&#39;intérêt</h2>
         <div class="card__body"><ul>
 <li><strong>Sports</strong> : escalade</li>
-<li><strong>Informatique</strong> : participation à des projets étudiants, programmation et jeux de logique</li>
+<li><strong>Informatique</strong> : programmation et jeux de logique</li>
 </ul>
 </div>
       </section>

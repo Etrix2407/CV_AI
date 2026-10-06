@@ -1,4 +1,4 @@
-"""Génère le CV en page web (dist/) à partir de content/cv.md."""
+"""Génère le CV en page web (docs/) à partir de content/cv.md."""
 
 import re
 import shutil
@@ -13,7 +13,7 @@ ROOT = Path(__file__).parent
 CONTENT = ROOT / "content" / "cv.md"
 TEMPLATES = ROOT / "templates"
 ASSETS = ROOT / "assets"
-DIST = ROOT / "docs"
+OUTPUT = ROOT / "docs"
 
 
 def slugify(text):
@@ -59,10 +59,10 @@ def main():
     cv = frontmatter.load(CONTENT)
     meta = {key.lower(): value for key, value in cv.metadata.items()}
 
-    # dist/ est entièrement régénéré : sources et résultat ne se mélangent jamais.
-    if DIST.exists():
-        shutil.rmtree(DIST)
-    shutil.copytree(ASSETS, DIST / "assets")
+    # docs/ est entièrement régénéré : sources et résultat ne se mélangent jamais.
+    if OUTPUT.exists():
+        shutil.rmtree(OUTPUT)
+    shutil.copytree(ASSETS, OUTPUT / "assets")
 
     photo = meta.get("photo")
     photo_src = f"assets/images/{photo}" if photo and (ASSETS / "images" / photo).is_file() else None
@@ -74,8 +74,8 @@ def main():
         contacts=build_contacts(meta),
         sections=split_sections(cv.content),
     )
-    (DIST / "index.html").write_text(html, encoding="utf-8")
-    print(f"CV généré : {(DIST / 'index.html').relative_to(ROOT)}")
+    (OUTPUT / "index.html").write_text(html, encoding="utf-8")
+    print(f"CV généré : {(OUTPUT / 'index.html').relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

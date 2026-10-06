@@ -12,8 +12,9 @@ assets/css/style.css     # styles écran (thème, mise en page, responsive)
 assets/css/print.css     # styles impression / PDF A4
 assets/js/theme.js       # bascule mode clair / sombre (aucun JS dans le HTML)
 assets/images/           # photo et images
-build.py                 # génère dist/ à partir des sources ci-dessus
-dist/                    # site produit (régénéré à chaque build, ignoré par Git)
+build.py                 # génère docs/ à partir des sources ci-dessus
+docs/                    # site produit (régénéré à chaque build)
+.github/workflows/pages.yml  # build + publication GitHub Pages à chaque push sur main
 requirements.txt
 ```
 
@@ -21,7 +22,7 @@ requirements.txt
 
 ```bash
 pip install -r requirements.txt   # markdown-it-py, python-frontmatter, jinja2
-python build.py                   # génère dist/index.html
+python build.py                   # génère docs/index.html
 ```
 
 Après toute modification de `content/cv.md`, `templates/`, `assets/` ou `build.py`, relancer `python build.py` et vérifier que la génération passe sans erreur.
@@ -51,5 +52,5 @@ Après toute modification de `content/cv.md`, `templates/`, `assets/` ou `build.
 ## Avant de terminer une tâche
 
 1. Relancer `python build.py` sans erreur.
-2. Vérifier que `dist/index.html` reflète bien le contenu de `content/cv.md`.
+2. Vérifier que `docs/index.html` reflète bien le contenu de `content/cv.md`.
 3. Résumer brièvement ce qui a changé.

@@ -7,11 +7,11 @@ pip install -r requirements.txt
 python build.py
 ```
 
-Ouvrir ensuite `dist/index.html` dans un navigateur.
+Ouvrir ensuite `docs/index.html` dans un navigateur.
 
 | Dossier | Rôle |
 |---|---|
 | `content/` | Texte du CV (Markdown) |
 | `templates/` | Structure HTML (Jinja2) |
 | `assets/` | CSS et images sources |
-| `dist/` | Site produit — ne pas modifier à la main |
+| `docs/` | Site produit — ne pas modifier à la main |

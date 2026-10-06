@@ -15,27 +15,26 @@ GitHub: https://github.com/Etrix2407
 ### Prédiction de revenus – dataset Adult
 **Python · pandas · scikit-learn** · [GitHub](https://github.com/Etrix2407/examen_ML/tree/main/adult)
 
-- Problème : prédire si une personne gagne plus de 50 000 $ par an à partir de données de recensement
-- Preprocessing, sélection de variables et comparaison de 6 combinaisons de modèles (arbre de décision, KNN, Random Forest)
-- Pipeline final : 85,6 % d'accuracy et ROC-AUC de 0,91 sur le jeu de test
+- Prédit si un revenu dépasse 50 000 $/an à partir de 48 842 profils de recensement
+- 6 combinaisons sélection de variables × modèle comparées (arbre de décision, KNN, Random Forest)
+- **85,6 % d'accuracy et ROC-AUC de 0,91** sur 16 281 profils jamais vus par le modèle
 
 ### Classification d'articles par embeddings
 **Python · Sentence-Transformers · FAISS · PCA** · [GitHub](https://github.com/Etrix2407/examen_ML/tree/main/classification_article)
 
-- Problème : déterminer automatiquement si un document Word est un article de sport ou de cuisine
-- Base de données vectorielle FAISS et classification par similarité sémantique
-- Visualisation des embeddings en 2D par PCA
+- Classe automatiquement un document Word en article de sport ou de cuisine
+- Base vectorielle FAISS de 20 phrases de référence encodées en 384 dimensions (all-MiniLM-L6-v2)
+- **Articles de test sport et cuisine correctement classés à l'unanimité** (5 plus proches voisins sur 5)
 
 ### Agent IA de gestion de tâches
 **Python · Google ADK · LiteLLM · Ollama** · [GitHub](https://github.com/Etrix2407/examen_ML/tree/main/todo_agent)
 
-- Problème : gérer une to-do list en langage naturel avec un LLM exécuté en local
-- Boucle agentique ReAct avec outils Python (ajout, suppression, tri par priorité, regroupement par tag)
-- Tests unitaires des outils
+- Gère une to-do list en langage naturel avec un LLM exécuté en local (qwen3:4b)
+- **8 outils** Python pilotés par une boucle agentique ReAct (CRUD, tri par priorité, regroupement par tag)
 
 ## Profil
 
-Développeur IA junior à la recherche d'un premier emploi (CDI ou CDD) en IA / machine learning dès janvier 2027, avec une stack Python, pandas, scikit-learn, embeddings (FAISS) et agents LLM (Google ADK).
+Je recherche un poste de **Développeur IA junior** (CDI ou CDD) dès janvier 2027, avec une stack Python, pandas, scikit-learn, embeddings (FAISS) et agents LLM (Google ADK).
 
 ## Formation
 

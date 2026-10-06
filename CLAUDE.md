@@ -1,15 +1,10 @@
 # CV — Projet
 
-<<<<<<< Updated upstream
 CV en page web, généré à partir d'un fichier Markdown.
-=======
-CV en page web, généré à partir d'un fichier Markdown. Générateur statique en Python, sortie en HTML/CSS pur (aucun framework, aucun JavaScript requis).
->>>>>>> Stashed changes
 
 ## Structure
 
 ```
-<<<<<<< Updated upstream
 content/cv.md            # contenu du CV (front matter + Markdown) — seule source du texte
 templates/index.html     # structure HTML (Jinja2), aucun style ni texte du CV
 templates/partials/      # fragments réutilisables (icônes SVG)
@@ -20,13 +15,6 @@ assets/images/           # photo et images
 build.py                 # génère docs/ à partir des sources ci-dessus
 docs/                    # site produit (régénéré à chaque build)
 .github/workflows/pages.yml  # build + publication GitHub Pages à chaque push sur main
-=======
-CV.md            # contenu du CV (front matter + Markdown) — seule source du texte
-assets/          # photo et fichiers statiques
-template.html    # template Jinja2 (mise en page + CSS)
-build.py         # génère docs/index.html à partir de CV.md
-docs/            # site généré (publiable via GitHub Pages)
->>>>>>> Stashed changes
 requirements.txt
 ```
 
@@ -37,11 +25,7 @@ pip install -r requirements.txt   # markdown-it-py, python-frontmatter, jinja2
 python build.py                   # génère docs/index.html
 ```
 
-<<<<<<< Updated upstream
 Après toute modification de `content/cv.md`, `templates/`, `assets/` ou `build.py`, relancer `python build.py` et vérifier que la génération passe sans erreur.
-=======
-Après toute modification de `CV.md`, `template.html` ou `build.py`, relancer `python build.py` et vérifier que la génération passe sans erreur.
->>>>>>> Stashed changes
 
 ## Règles de contenu
 
@@ -68,9 +52,5 @@ Après toute modification de `CV.md`, `template.html` ou `build.py`, relancer `p
 ## Avant de terminer une tâche
 
 1. Relancer `python build.py` sans erreur.
-<<<<<<< Updated upstream
 2. Vérifier que `docs/index.html` reflète bien le contenu de `content/cv.md`.
-=======
-2. Vérifier que `dist/index.html` reflète bien le contenu de `cv.md`.
->>>>>>> Stashed changes
 3. Résumer brièvement ce qui a changé.

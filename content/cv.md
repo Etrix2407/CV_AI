@@ -4,7 +4,7 @@ title: Étudiant en informatique, orientation Intelligence Artificielle
 lang: fr
 photo: photo.jpg
 email: ethannickels2@gmail.com
-phone: demandez moi
+phone: demandez-moi
 address: 6630 Martelange, Belgique
 linkedin: www.linkedin.com/in/ethan-nickels
 GitHub: https://github.com/Etrix2407
@@ -17,16 +17,16 @@ GitHub: https://github.com/Etrix2407
 ## Formation
 
 ### En cours
-formation en Développement IA - Technobel
+formation en Développement IA – Technobel
 
 ### 2024 | 2026
 **Bachelier en informatique, orientation Intelligence Artificielle** – IESN, Namur
 
 ### 2021 | 2022
-Henallux, Arlon
+**Bachelier en comptabilité** – Henallux, Arlon
 
 ### 2020 | 2021
-Solvay, Bruxelles
+**Ingénieur de gestion** – Solvay, Bruxelles
 
 ### 2020
 **CESS** – École Libre de Lorraine, Messancy

@@ -1,0 +1,71 @@
+"""Génère le CV en page web (docs/index.html) à partir de CV.md."""
+
+import re
+import shutil
+import unicodedata
+from pathlib import Path
+
+import frontmatter
+from jinja2 import Environment, FileSystemLoader
+from markdown_it import MarkdownIt
+
+ROOT = Path(__file__).parent
+SOURCE = ROOT / "CV.md"
+ASSETS = ROOT / "assets"
+OUTPUT = ROOT / "docs"
+
+
+def slugify(text):
+    """Transforme un titre en identifiant d'ancre (sans accents ni espaces)."""
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def split_sections(content):
+    """Découpe le Markdown en sections sur les titres de niveau 2."""
+    md = MarkdownIt("commonmark")
+    sections = []
+    for block in re.split(r"^## ", content, flags=re.MULTILINE)[1:]:
+        title, _, body = block.partition("\n")
+        title = title.strip()
+        sections.append({"title": title, "id": slugify(title), "html": md.render(body)})
+    return sections
+
+
+def contact_links(meta):
+    """Prépare les liens cliquables des informations de contact."""
+    links = {}
+    if meta.get("email"):
+        links["email"] = f"mailto:{meta['email']}"
+    if meta.get("phone"):
+        links["phone"] = "tel:" + re.sub(r"[^\d+]", "", str(meta["phone"]))
+    if meta.get("linkedin"):
+        url = meta["linkedin"]
+        links["linkedin"] = url if url.startswith("http") else f"https://{url}"
+    return links
+
+
+def main():
+    cv = frontmatter.load(SOURCE)
+    meta = cv.metadata
+
+    OUTPUT.mkdir(exist_ok=True)
+    photo = meta.get("photo")
+    if photo and (ASSETS / photo).is_file():
+        shutil.copy(ASSETS / photo, OUTPUT / photo)
+    else:
+        photo = None
+
+    env = Environment(loader=FileSystemLoader(ROOT), autoescape=True)
+    html = env.get_template("template.html").render(
+        meta=meta,
+        photo=photo,
+        links=contact_links(meta),
+        sections=split_sections(cv.content),
+    )
+    (OUTPUT / "index.html").write_text(html, encoding="utf-8")
+    print(f"CV généré : {(OUTPUT / 'index.html').relative_to(ROOT)}")
+
+
+if __name__ == "__main__":
+    main()

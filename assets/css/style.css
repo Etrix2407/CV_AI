@@ -280,11 +280,10 @@ strong { font-weight: 600; }
   .card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
 }
 
-/* Titre numéroté : « 01 / profil » */
+/* Titre numéroté : « 01 / Profil » (casse d'origine de cv.md) */
 .card__title {
   margin: 0 0 16px;
   font: 600 1.15rem var(--font-mono);
-  text-transform: lowercase;
   letter-spacing: -.01em;
 }
 

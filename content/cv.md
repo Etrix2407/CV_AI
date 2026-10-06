@@ -4,7 +4,7 @@ title: Étudiant en informatique, orientation Intelligence Artificielle
 lang: fr
 photo: photo.jpg
 email: ethannickels2@gmail.com
-phone: demander moi
+phone: demandez moi
 address: 6630 Martelange, Belgique
 linkedin: www.linkedin.com/in/ethan-nickels
 GitHub: https://github.com/Etrix2407

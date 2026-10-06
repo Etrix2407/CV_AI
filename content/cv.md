@@ -3,7 +3,7 @@ name: Ethan Nickels
 title: Étudiant en informatique, orientation Intelligence Artificielle
 lang: fr
 photo: photo.jpg
-email: ethannickels@gmail.com
+email: ethannickels2@gmail.com
 phone: demander moi
 address: 6630 Martelange, Belgique
 linkedin: www.linkedin.com/in/ethan-nickels

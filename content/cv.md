@@ -17,7 +17,7 @@ GitHub: https://github.com/Etrix2407
 ## Formation
 
 ### En cours
-formation en Développement IA – Technobel
+**formation en Développement IA** – Technobel
 
 ### 2024 | 2026
 **Bachelier en informatique, orientation Intelligence Artificielle** – IESN, Namur

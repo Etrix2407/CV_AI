@@ -4,8 +4,8 @@ title: Étudiant en informatique, orientation Intelligence Artificielle
 lang: fr
 photo: photo.jpg
 email: ethannickels@gmail.com
-phone: "+32467123361"
-address: 13 Au Puits de la Mine, 6630 Martelange
+phone: demander moi
+address: 6630 Martelange, Belgique
 linkedin: www.linkedin.com/in/ethan-nickels
 GitHub: https://github.com/Etrix2407
 ---

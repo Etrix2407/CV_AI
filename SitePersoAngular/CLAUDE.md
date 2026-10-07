@@ -1,0 +1,122 @@
+# CV — Projet
+
+CV en page web, sous forme d'application Angular (migration de l'ancien site statique conservé dans `legacys/`).
+
+## Structure
+
+Tout le projet est dans `SitePersoAngular/`. Seul `.github/` reste à la racine du dépôt, car GitHub n'y lit les workflows qu'à cet endroit.
+
+```
+src/app/cv/cv.data.ts        # contenu du CV — seule source du texte
+src/app/cv/cv.model.ts       # types du contenu
+src/app/cv/cv-page.*         # page CV (chargée en lazy loading)
+src/app/cv/                  # composants : en-tête, menu, carte de section, sections/
+src/app/shared/              # composants réutilisables (icônes SVG, texte enrichi)
+src/app/theme/               # bascule mode clair / sombre (service + bouton)
+src/styles.scss              # thème, styles globaux, impression / PDF A4
+public/                      # fichiers statiques (photo, favicon)
+legacys/                     # ancien site (Python + Jinja2) — référence en lecture seule
+../.github/workflows/pages.yml  # tests + build + publication GitHub Pages à chaque push sur main
+```
+
+## Commandes
+
+```bash
+npm install
+npm start                   # serveur de développement
+npm test -- --watch=false   # tests unitaires
+npm run build               # génère dist/SitePersoAngular/browser
+```
+
+Après toute modification de `src/` ou `public/`, relancer `npm run build` et `npm test -- --watch=false` et vérifier qu'ils passent sans erreur ni avertissement.
+
+## Règles de contenu
+
+- Ne jamais écrire de texte du CV en dur dans les templates : tout le contenu vient de `src/app/cv/cv.data.ts`.
+- Ne jamais inventer ni modifier des faits (dates, postes, entreprises, chiffres, compétences). Si une information manque ou semble incohérente, poser la question.
+- Langue du CV : français, sauf indication contraire.
+- Ne pas modifier `legacys/` : c'est la référence de la migration.
+
+## Règles de code
+
+- Code simple et lisible, sans dépendance superflue.
+- Ne pas ajouter de bibliothèque (UI, Markdown, état, etc.) sans demande explicite.
+- Respecter les bonnes pratiques Angular ci-dessous.
+
+## Workflow Git
+
+- La branche `main` est protégée : ne jamais pousser directement dessus.
+- Pour toute modification : créer une branche (`git checkout -b <nom-court>`), committer, pousser la branche, puis ouvrir une pull request.
+- Messages de commit courts, à l'impératif, en français (ex. : « Ajoute la section compétences »).
+- Un commit = un changement cohérent.
+- Ne jamais utiliser `git push --force`, `git reset --hard` ni supprimer de branche distante.
+- Demander confirmation avant chaque commit et chaque push.
+- Ne jamais committer de secrets, de clés API ou de données personnelles non destinées à être publiques (adresse postale complète, numéro de téléphone, etc.) sans validation.
+
+## Avant de terminer une tâche
+
+1. Relancer `npm run build` et `npm test -- --watch=false` sans erreur.
+2. Vérifier que la page affichée reflète bien le contenu de `src/app/cv/cv.data.ts`.
+3. Résumer brièvement ce qui a changé.
+
+---
+
+You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
+
+## TypeScript Best Practices
+
+- Use strict type checking
+- Prefer type inference when the type is obvious
+- Avoid the `any` type; use `unknown` when type is uncertain
+
+## Angular Best Practices
+
+- Always use standalone components over NgModules
+- Must NOT set `standalone: true` inside Angular decorators. It's the default in Angular v20+.
+- Do NOT set `changeDetection: ChangeDetectionStrategy.OnPush` explicitly. `OnPush` is the default in Angular v22+.
+- Use signals for state management
+- Implement lazy loading for feature routes
+- Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
+- Use `NgOptimizedImage` for all static images.
+  - `NgOptimizedImage` does not work for inline base64 images.
+
+## Accessibility Requirements
+
+- It MUST pass all AXE checks.
+- It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+
+### Components
+
+- Keep components small and focused on a single responsibility
+- Use `input()` and `output()` functions instead of decorators
+- Use `model()` for two-way bound properties with `[(prop)]` syntax instead of pairing `input()` with `output()`
+- Use `computed()` for derived state
+- Use `linkedSignal()` for state derived from multiple reactive sources that must stay synchronized
+- Prefer inline templates for small components
+- Prefer Signal Forms (`@angular/forms/signals`) for new forms. They are stable in Angular v22+ and provide signal-based state, type-safe field access, and schema-based validation
+- When not using Signal Forms, prefer Reactive forms instead of Template-driven ones
+- Do NOT use `ngClass`, use `class` bindings instead
+- Do NOT use `ngStyle`, use `style` bindings instead
+- Do NOT import `CommonModule`, import only the directives and pipes the template uses, such as `AsyncPipe` or `DatePipe`
+- When using external templates/styles, use paths relative to the component TS file.
+
+## State Management
+
+- Use signals for local component state
+- Use `computed()` for derived state
+- Keep state transformations pure and predictable
+- Do NOT use `mutate` on signals, use `update` or `set` instead
+
+## Templates
+
+- Keep templates simple and avoid complex logic
+- Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
+- Use the async pipe to handle observables
+- Do not assume globals like (`new Date()`) are available.
+
+## Services
+
+- Design services around a single responsibility
+- Use the `providedIn: 'root'` option for singleton services
+- Prefer the `@Service` decorator over `@Injectable({providedIn: 'root'})` for new singleton services (Angular v22+)
+- Use the `inject()` function instead of constructor injection

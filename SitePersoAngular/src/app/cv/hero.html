@@ -1,0 +1,31 @@
+<div class="window">
+  <div class="window__bar" aria-hidden="true">
+    <span class="window__tab"><app-icon name="file" />{{ fileName() }}</span>
+  </div>
+
+  <div class="hero__body">
+    <img class="hero__photo" [ngSrc]="photo()" width="132" height="132" priority [alt]="name()" />
+
+    <div>
+      <h1 class="hero__name">{{ name() }}</h1>
+      <p class="hero__title">{{ title() }}</p>
+
+      <ul class="contacts">
+        @for (contact of contacts(); track contact.kind) {
+          <li class="contacts__item">
+            <app-icon [name]="contact.kind" />
+            @if (contact.href; as href) {
+              @if (isExternal(href)) {
+                <a [href]="href" target="_blank" rel="noopener">{{ contact.label }}</a>
+              } @else {
+                <a [href]="href">{{ contact.label }}</a>
+              }
+            } @else {
+              {{ contact.label }}
+            }
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

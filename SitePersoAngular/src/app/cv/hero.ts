@@ -1,5 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
+import { isExternalLink, tabFileName } from '../../../../shared/format';
 import { Icon } from '../shared/icon';
 import { Contact } from './cv.model';
 
@@ -7,8 +8,8 @@ import { Contact } from './cv.model';
 @Component({
   selector: 'app-hero',
   imports: [NgOptimizedImage, Icon],
+  host: { class: 'hero' },
   templateUrl: './hero.html',
-  styleUrl: './hero.scss',
 })
 export class Hero {
   readonly name = input.required<string>();
@@ -16,12 +17,6 @@ export class Hero {
   readonly photo = input.required<string>();
   readonly contacts = input.required<readonly Contact[]>();
 
-  /** Nom de l'onglet : « ethan-nickels.md ». */
-  protected readonly fileName = computed(
-    () => `${this.name().toLowerCase().replaceAll(' ', '-')}.md`,
-  );
-
-  protected isExternal(href: string): boolean {
-    return href.startsWith('http');
-  }
+  protected readonly fileName = computed(() => tabFileName(this.name()));
+  protected readonly isExternal = isExternalLink;
 }

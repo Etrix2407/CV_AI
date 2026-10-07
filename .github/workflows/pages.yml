@@ -1,5 +1,6 @@
-# Construit l'application Angular (SitePersoAngular/) et la publie sur GitHub Pages
-# à chaque push sur main, ou manuellement depuis l'onglet Actions.
+# Construit les deux versions du CV et les publie ensemble sur GitHub Pages
+# à chaque push sur main, ou manuellement depuis l'onglet Actions :
+#   SitePersoAngular -> /<dépôt>/        SitePersoReact -> /<dépôt>/react/
 
 name: Publier le CV sur GitHub Pages
 
@@ -21,9 +22,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: SitePersoAngular
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v5
@@ -33,26 +31,39 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: SitePersoAngular/package-lock.json
-
-      - name: Installer les dépendances
-        run: npm ci
-
-      - name: Lancer les tests
-        run: npx ng test --watch=false
+          cache-dependency-path: |
+            SitePersoAngular/package-lock.json
+            SitePersoReact/package-lock.json
 
       - name: Configurer GitHub Pages
         id: pages
         uses: actions/configure-pages@v5
 
       # Le site est servi sous /<dépôt>/ : base_path fournit ce préfixe.
-      - name: Construire le site
-        run: npx ng build --base-href "${{ steps.pages.outputs.base_path }}/"
+      - name: Angular — installer, tester, construire
+        working-directory: SitePersoAngular
+        run: |
+          npm ci
+          npx ng test --watch=false
+          npx ng build --base-href "${{ steps.pages.outputs.base_path }}/"
+
+      - name: React — installer, tester, construire
+        working-directory: SitePersoReact
+        run: |
+          npm ci
+          npm test -- --run
+          npm run build -- --base "${{ steps.pages.outputs.base_path }}/react/"
+
+      - name: Assembler le site
+        run: |
+          mkdir _site
+          cp -r SitePersoAngular/dist/SitePersoAngular/browser/. _site/
+          cp -r SitePersoReact/dist _site/react
 
       - name: Préparer le site à publier
         uses: actions/upload-pages-artifact@v4
         with:
-          path: SitePersoAngular/dist/SitePersoAngular/browser
+          path: _site
 
   deploy:
     needs: build

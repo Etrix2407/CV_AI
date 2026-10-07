@@ -1,0 +1,37 @@
+<div class="page">
+  <header>
+    <app-theme-toggle />
+    <app-hero [name]="cv.name" [title]="cv.title" [photo]="cv.photo" [contacts]="cv.contacts" />
+  </header>
+
+  <app-section-nav [sections]="cv.sections" />
+
+  <main>
+    @for (section of cv.sections; track section.id; let i = $index) {
+      <app-section-card [sectionId]="section.id" [heading]="section.title" [position]="i + 1">
+        @switch (section.id) {
+          @case ('projets') {
+            <app-projects [projects]="cv.projects" />
+          }
+          @case ('profil') {
+            <p><app-rich-text [text]="cv.profile" /></p>
+          }
+          @case ('formation') {
+            <app-education-list [education]="cv.education" />
+          }
+          @case ('experiences') {
+            <app-experience-list [experiences]="cv.experiences" />
+          }
+          @case ('competences') {
+            <app-skill-groups [groups]="cv.skills" />
+          }
+          @case ('centres-d-interet') {
+            <app-interest-list [interests]="cv.interests" />
+          }
+        }
+      </app-section-card>
+    }
+  </main>
+
+  <footer class="footer">{{ cv.name }}</footer>
+</div>

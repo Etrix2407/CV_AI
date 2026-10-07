@@ -1,0 +1,232 @@
+/* ==========================================================================
+   CV — styles globaux (thème « terminal / IDE »)
+   1. Thème (variables, clair / sombre)   2. Base   3. Contenu des sections
+   4. Animations   5. Impression
+   Les styles propres à chaque bloc sont dans le composant correspondant.
+   ========================================================================== */
+
+/* 1. Thème --------------------------------------------------------------- */
+@mixin dark-theme {
+  --bg: #0a0f0d;
+  --surface: #111816;
+  --surface-alt: #18211e;
+  --text: #e2ebe7;
+  --muted: #8ea29a;
+  --accent: #34d399;
+  --accent-2: #a78bfa;
+  --accent-soft: rgba(52, 211, 153, 0.1);
+  --border: #1f2b27;
+  --pattern: rgba(226, 235, 231, 0.06);
+  --shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, ui-monospace, monospace;
+  --radius: 12px;
+  --gutter: 16px;
+
+  /* Clair (par défaut) */
+  --bg: #f4f7f5;
+  --surface: #ffffff;
+  --surface-alt: #eef3f0;
+  --text: #13201b;
+  --muted: #5a6b64;
+  --accent: #047857; /* vert menthe foncé : contraste AA sur fond clair */
+  --accent-2: #7c3aed; /* violet */
+  --accent-soft: rgba(4, 120, 87, 0.1);
+  --border: #dbe4df;
+  --pattern: rgba(19, 32, 27, 0.09);
+  --shadow: 0 1px 2px rgba(19, 32, 27, 0.05), 0 12px 32px -12px rgba(19, 32, 27, 0.12);
+}
+
+/* Sombre : thème du système (sauf si l'utilisateur a choisi « clair ») … */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-theme;
+  }
+}
+
+/* … ou choix explicite via le bouton */
+:root[data-theme='dark'] {
+  @include dark-theme;
+}
+
+/* 2. Base ---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font: 16px/1.65 var(--font-sans);
+  /* Fond à motif discret : grille de points façon éditeur */
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--pattern) 1px, transparent 1px);
+  background-size: 22px 22px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+strong {
+  font-weight: 600;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* 3. Contenu des sections (partagé par les composants de section) -------- */
+.cv-subtitle {
+  margin: 20px 0 2px;
+  font: 600 0.95rem var(--font-mono);
+  color: var(--accent-2);
+  break-after: avoid;
+
+  &::before {
+    content: '› ' / '';
+    color: var(--accent);
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.cv-indent {
+  margin-left: 16px;
+}
+
+.card p {
+  margin: 0 0 8px;
+}
+
+/* Lien au milieu d'un texte : souligné pour ne pas dépendre de la seule couleur */
+.card p a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cv-list {
+  margin: 6px 0 4px;
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin: 3px 0;
+    padding-left: 18px;
+    break-inside: avoid;
+
+    &::before {
+      content: '-' / '';
+      position: absolute;
+      left: 2px;
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .cv-indent {
+    margin-left: 12px;
+  }
+}
+
+/* 4. Animations ---------------------------------------------------------- */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 5. Impression / PDF A4 : toujours en clair, sans fond ni animation ----- */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  :root,
+  :root[data-theme='dark'],
+  :root:not([data-theme='light']) {
+    --bg: #fff;
+    --surface: #fff;
+    --surface-alt: #fff;
+    --text: #000;
+    --muted: #444;
+    --accent: #047857;
+    --accent-2: #7c3aed;
+    --border: #ddd;
+    --shadow: none;
+  }
+
+  body {
+    font-size: 12.5px;
+    background: #fff;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  a {
+    color: inherit;
+  }
+}

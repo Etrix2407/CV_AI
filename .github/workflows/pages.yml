@@ -1,6 +1,7 @@
 # Construit les deux versions du CV et les publie ensemble sur GitHub Pages
 # à chaque push sur main, ou manuellement depuis l'onglet Actions :
-#   SitePersoAngular -> /<dépôt>/        SitePersoReact -> /<dépôt>/react/
+#   page de choix (shared/accueil.html) -> /<dépôt>/
+#   SitePersoAngular -> /<dépôt>/angular/        SitePersoReact -> /<dépôt>/react/
 
 name: Publier le CV sur GitHub Pages
 
@@ -45,7 +46,7 @@ jobs:
         run: |
           npm ci
           npx ng test --watch=false
-          npx ng build --base-href "${{ steps.pages.outputs.base_path }}/"
+          npx ng build --base-href "${{ steps.pages.outputs.base_path }}/angular/"
 
       - name: React — installer, tester, construire
         working-directory: SitePersoReact
@@ -57,7 +58,9 @@ jobs:
       - name: Assembler le site
         run: |
           mkdir _site
-          cp -r SitePersoAngular/dist/SitePersoAngular/browser/. _site/
+          cp shared/accueil.html _site/index.html
+          cp shared/cv.css _site/cv.css
+          cp -r SitePersoAngular/dist/SitePersoAngular/browser _site/angular
           cp -r SitePersoReact/dist _site/react
 
       - name: Préparer le site à publier

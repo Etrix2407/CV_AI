@@ -1,64 +1,34 @@
-import { DOCUMENT, DestroyRef, Service, computed, effect, inject, signal } from '@angular/core';
+import { DestroyRef, Service, computed, effect, inject, signal } from '@angular/core';
+import {
+  Theme,
+  applyTheme,
+  isSystemDark,
+  oppositeTheme,
+  readStoredTheme,
+  resolveTheme,
+  storeTheme,
+  watchSystemTheme,
+} from '../../../../shared/theme';
 
-export type Theme = 'light' | 'dark';
-
-const STORAGE_KEY = 'theme';
-
-/**
- * Mode clair / sombre.
- * Sans choix mémorisé, le thème suit le réglage du système ; un choix explicite
- * est appliqué via l'attribut data-theme de <html> et mémorisé dans localStorage.
- */
+/** Mode clair / sombre (logique partagée dans shared/theme.ts). */
 @Service()
 export class ThemeService {
-  private readonly document = inject(DOCUMENT);
-  private readonly window = this.document.defaultView;
-  private readonly systemQuery = this.window?.matchMedia?.('(prefers-color-scheme: dark)');
+  private readonly systemDark = signal(isSystemDark());
+  private readonly choice = signal<Theme | null>(readStoredTheme());
 
-  private readonly systemDark = signal(this.systemQuery?.matches ?? false);
-  private readonly choice = signal<Theme | null>(this.readStored());
-
-  readonly theme = computed<Theme>(() => this.choice() ?? (this.systemDark() ? 'dark' : 'light'));
+  readonly theme = computed(() => resolveTheme(this.choice(), this.systemDark()));
   readonly isDark = computed(() => this.theme() === 'dark');
 
   constructor() {
-    const onSystemChange = (event: MediaQueryListEvent) => this.systemDark.set(event.matches);
-    this.systemQuery?.addEventListener('change', onSystemChange);
-    inject(DestroyRef).onDestroy(() =>
-      this.systemQuery?.removeEventListener('change', onSystemChange),
-    );
+    const stopWatching = watchSystemTheme((dark) => this.systemDark.set(dark));
+    inject(DestroyRef).onDestroy(stopWatching);
 
-    effect(() => {
-      const root = this.document.documentElement;
-      const choice = this.choice();
-      if (choice) {
-        root.dataset['theme'] = choice;
-      } else {
-        delete root.dataset['theme'];
-      }
-    });
+    effect(() => applyTheme(this.choice()));
   }
 
   toggle(): void {
-    const next: Theme = this.isDark() ? 'light' : 'dark';
+    const next = oppositeTheme(this.theme());
     this.choice.set(next);
-    this.save(next);
-  }
-
-  private readStored(): Theme | null {
-    try {
-      const value = this.window?.localStorage.getItem(STORAGE_KEY);
-      return value === 'light' || value === 'dark' ? value : null;
-    } catch {
-      return null;
-    }
-  }
-
-  private save(theme: Theme): void {
-    try {
-      this.window?.localStorage.setItem(STORAGE_KEY, theme);
-    } catch {
-      // Stockage indisponible (navigation privée…) : le choix vaut pour la session.
-    }
+    storeTheme(next);
   }
 }

@@ -27,7 +27,6 @@ import { SkillGroups } from './sections/skill-groups';
     InterestList,
   ],
   templateUrl: './cv-page.html',
-  styleUrl: './cv-page.scss',
 })
 export default class CvPage {
   protected readonly cv = CV;

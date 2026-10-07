@@ -1,22 +1,29 @@
 # CV — Projet
 
 CV en page web, sous forme d'application Angular (migration de l'ancien site statique conservé dans `legacys/`).
+Une version React identique existe dans `../SitePersoReact/`. Tout ce qui ne dépend pas du framework est partagé entre les deux dans `../shared/` : contenu, styles, icônes, thème, règles d'affichage. Seuls les composants (templates) sont propres à chaque version.
 
 ## Structure
 
-Tout le projet est dans `SitePersoAngular/`. Seul `.github/` reste à la racine du dépôt, car GitHub n'y lit les workflows qu'à cet endroit.
+À la racine du dépôt : `SitePersoAngular/`, `SitePersoReact/`, `shared/` (code commun aux deux versions) et `.github/` (GitHub n'y lit les workflows qu'à cet endroit).
 
 ```
-src/app/cv/cv.data.ts        # contenu du CV — seule source du texte
-src/app/cv/cv.model.ts       # types du contenu
+../shared/cv.data.ts         # contenu du CV — seule source du texte
+../shared/cv.model.ts        # types du contenu
+../shared/photo.jpg          # photo du CV (importée par cv.data.ts)
+../shared/cv.css             # feuille de style unique : thème, mise en page, responsive, impression A4
+../shared/icons.ts           # tracés des icônes SVG
+../shared/theme.ts           # logique du mode clair / sombre
+../shared/format.ts          # règles d'affichage (nom d'onglet, numéro de section, liens externes…)
+src/app/cv/cv.data.ts        # simple ré-export de ../shared (idem cv.model.ts)
 src/app/cv/cv-page.*         # page CV (chargée en lazy loading)
 src/app/cv/                  # composants : en-tête, menu, carte de section, sections/
-src/app/shared/              # composants réutilisables (icônes SVG, texte enrichi)
-src/app/theme/               # bascule mode clair / sombre (service + bouton)
-src/styles.scss              # thème, styles globaux, impression / PDF A4
-public/                      # fichiers statiques (photo, favicon)
+src/app/shared/              # composants réutilisables (icône, texte enrichi)
+src/app/theme/               # mode clair / sombre : service (adaptateur de ../shared/theme.ts) + bouton
+src/styles.scss              # charge ../shared/cv.css (aucun style dans les composants)
+public/                      # fichiers statiques (favicon)
 legacys/                     # ancien site (Python + Jinja2) — référence en lecture seule
-../.github/workflows/pages.yml  # tests + build + publication GitHub Pages à chaque push sur main
+../.github/workflows/pages.yml  # tests + build des deux versions, publication GitHub Pages (Angular à /CV_AI/, React à /CV_AI/react/)
 ```
 
 ## Commandes
@@ -28,11 +35,13 @@ npm test -- --watch=false   # tests unitaires
 npm run build               # génère dist/SitePersoAngular/browser
 ```
 
-Après toute modification de `src/` ou `public/`, relancer `npm run build` et `npm test -- --watch=false` et vérifier qu'ils passent sans erreur ni avertissement.
+Après toute modification de `src/`, `public/` ou `../shared/`, relancer `npm run build` et `npm test -- --watch=false` et vérifier qu'ils passent sans erreur ni avertissement.
 
 ## Règles de contenu
 
-- Ne jamais écrire de texte du CV en dur dans les templates : tout le contenu vient de `src/app/cv/cv.data.ts`.
+- Ne jamais écrire de texte du CV en dur dans les templates : tout le contenu vient de `../shared/cv.data.ts`.
+- Toute modification de `../shared/` touche aussi SitePersoReact : vérifier que les deux versions buildent et passent leurs tests.
+- Pas de doublon avec SitePersoReact : un style, une donnée ou une règle sans lien avec Angular va dans `../shared/`, pas dans les composants.
 - Ne jamais inventer ni modifier des faits (dates, postes, entreprises, chiffres, compétences). Si une information manque ou semble incohérente, poser la question.
 - Langue du CV : français, sauf indication contraire.
 - Ne pas modifier `legacys/` : c'est la référence de la migration.
@@ -56,7 +65,7 @@ Après toute modification de `src/` ou `public/`, relancer `npm run build` et `n
 ## Avant de terminer une tâche
 
 1. Relancer `npm run build` et `npm test -- --watch=false` sans erreur.
-2. Vérifier que la page affichée reflète bien le contenu de `src/app/cv/cv.data.ts`.
+2. Vérifier que la page affichée reflète bien le contenu de `../shared/cv.data.ts`.
 3. Résumer brièvement ce qui a changé.
 
 ---

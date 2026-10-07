@@ -60,6 +60,7 @@ jobs:
           mkdir _site
           cp shared/accueil.html _site/index.html
           cp shared/cv.css _site/cv.css
+          cp shared/favicon.svg shared/favicon.ico _site/
           cp -r SitePersoAngular/dist/SitePersoAngular/browser _site/angular
           cp -r SitePersoReact/dist _site/react
 

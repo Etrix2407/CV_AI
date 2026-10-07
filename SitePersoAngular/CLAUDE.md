@@ -16,13 +16,14 @@ Une version React identique existe dans `../SitePersoReact/`. Tout ce qui ne dé
 ../shared/theme.ts           # logique du mode clair / sombre
 ../shared/format.ts          # règles d'affichage (nom d'onglet, numéro de section, liens externes…)
 ../shared/accueil.html       # page de choix publiée à la racine du site (/CV_AI/)
+../shared/favicon.svg, .ico  # favicon de la page de choix (chaque version garde le logo de son framework)
 src/app/cv/cv.data.ts        # simple ré-export de ../shared (idem cv.model.ts)
 src/app/cv/cv-page.*         # page CV (chargée en lazy loading)
 src/app/cv/                  # composants : en-tête, menu, carte de section, sections/
 src/app/shared/              # composants réutilisables (icône, texte enrichi)
 src/app/theme/               # mode clair / sombre : service (adaptateur de ../shared/theme.ts) + bouton
 src/styles.scss              # charge ../shared/cv.css (aucun style dans les composants)
-public/                      # fichiers statiques (favicon)
+public/                      # fichiers statiques (favicon : logo Angular)
 legacys/                     # ancien site (Python + Jinja2) — référence en lecture seule
 ../.github/workflows/pages.yml  # tests + build des deux versions, publication GitHub Pages (page de choix à /CV_AI/, Angular à /CV_AI/angular/, React à /CV_AI/react/)
 ```
@@ -42,6 +43,7 @@ Après toute modification de `src/`, `public/` ou `../shared/`, relancer `npm ru
 
 - Ne jamais écrire de texte du CV en dur dans les templates : tout le contenu vient de `../shared/cv.data.ts`.
 - Toute modification de `../shared/` touche aussi SitePersoReact : vérifier que les deux versions buildent et passent leurs tests.
+- Les deux versions doivent rester identiques (texte et rendu), à une exception près : le favicon, qui montre le logo du framework (Angular ici, React dans SitePersoReact).
 - Pas de doublon avec SitePersoReact : un style, une donnée ou une règle sans lien avec Angular va dans `../shared/`, pas dans les composants.
 - Ne jamais inventer ni modifier des faits (dates, postes, entreprises, chiffres, compétences). Si une information manque ou semble incohérente, poser la question.
 - Langue du CV : français, sauf indication contraire.

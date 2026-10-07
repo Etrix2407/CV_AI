@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>CV</title>
+  <!-- Invite de terminal « >_ » aux couleurs du thème sombre du CV (shared/cv.css) -->
+  <rect width="32" height="32" rx="7" fill="#111816"/>
+  <path d="M8 10.5 13.5 16 8 21.5" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M17 21.5h7" fill="none" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+</svg>

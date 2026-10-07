@@ -15,11 +15,12 @@ CV en page web, sous forme d'application React (Vite + TypeScript). C'est la ver
 ../shared/theme.ts           # logique du mode clair / sombre
 ../shared/format.ts          # règles d'affichage (nom d'onglet, numéro de section, liens externes…)
 ../shared/accueil.html       # page de choix publiée à la racine du site (/CV_AI/)
+../shared/favicon.svg, .ico  # favicon de la page de choix (chaque version garde le logo de son framework)
 src/cv.ts                    # point d'accès au contenu et aux règles d'affichage partagés
 src/App.tsx                  # page CV
 src/components/              # en-tête, menu, carte de section, icône, texte enrichi, sections/
 src/theme/                   # mode clair / sombre : hook useTheme (adaptateur de ../shared/theme.ts) + bouton
-public/                      # fichiers statiques (favicon)
+public/                      # fichiers statiques (favicon : logo React, en SVG + .ico de secours)
 ../.github/workflows/pages.yml  # tests + build des deux versions, publication GitHub Pages (page de choix à /CV_AI/, Angular à /CV_AI/angular/, React à /CV_AI/react/)
 ```
 
@@ -39,7 +40,7 @@ Après toute modification de `src/`, `public/` ou `../shared/`, relancer `npm ru
 
 - Ne jamais écrire de texte du CV en dur dans les composants : tout le contenu vient de `../shared/cv.data.ts`.
 - Toute modification de `../shared/` touche aussi SitePersoAngular : vérifier que les deux versions buildent et passent leurs tests.
-- Les deux versions doivent rester identiques (texte et rendu). Pas de doublon : un style, une donnée ou une règle sans lien avec React va dans `../shared/` ; seule une modification de composant se reporte à la main dans SitePersoAngular.
+- Les deux versions doivent rester identiques (texte et rendu), à une exception près : le favicon, qui montre le logo du framework (React ici, Angular dans SitePersoAngular). Pas de doublon : un style, une donnée ou une règle sans lien avec React va dans `../shared/` ; seule une modification de composant se reporte à la main dans SitePersoAngular.
 - Aucun fichier CSS dans `src/` : tout le style est dans `../shared/cv.css` (chargé par `src/main.tsx`).
 - Ne jamais inventer ni modifier des faits (dates, postes, entreprises, chiffres, compétences). Si une information manque ou semble incohérente, poser la question.
 - Langue du CV : français, sauf indication contraire.

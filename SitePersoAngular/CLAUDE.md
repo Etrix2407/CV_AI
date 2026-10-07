@@ -5,7 +5,7 @@ Une version React identique existe dans `../SitePersoReact/`. Tout ce qui ne dé
 
 ## Structure
 
-À la racine du dépôt : `SitePersoAngular/`, `SitePersoReact/`, `shared/` (code commun aux deux versions) et `.github/` (GitHub n'y lit les workflows qu'à cet endroit).
+À la racine du dépôt : `README.md` (présentation complète du projet), `SitePersoAngular/`, `SitePersoReact/`, `shared/` (code commun aux deux versions) et `.github/` (GitHub n'y lit les workflows qu'à cet endroit).
 
 ```
 ../shared/cv.data.ts         # contenu du CV — seule source du texte

@@ -11,7 +11,7 @@ npm run build        # site produit dans dist/
 ```
 
 Les deux versions sont construites et publiées sur GitHub Pages à chaque push sur `main`
-(Angular à `/CV_AI/`, React à `/CV_AI/react/` — voir [../.github/workflows/pages.yml](../.github/workflows/pages.yml)).
+(page de choix à `/CV_AI/`, Angular à `/CV_AI/angular/`, React à `/CV_AI/react/` — voir [../.github/workflows/pages.yml](../.github/workflows/pages.yml)).
 
 | Emplacement | Rôle |
 |---|---|

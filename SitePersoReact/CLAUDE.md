@@ -14,12 +14,13 @@ CV en page web, sous forme d'application React (Vite + TypeScript). C'est la ver
 ../shared/icons.ts           # tracés des icônes SVG
 ../shared/theme.ts           # logique du mode clair / sombre
 ../shared/format.ts          # règles d'affichage (nom d'onglet, numéro de section, liens externes…)
+../shared/accueil.html       # page de choix publiée à la racine du site (/CV_AI/)
 src/cv.ts                    # point d'accès au contenu et aux règles d'affichage partagés
 src/App.tsx                  # page CV
 src/components/              # en-tête, menu, carte de section, icône, texte enrichi, sections/
 src/theme/                   # mode clair / sombre : hook useTheme (adaptateur de ../shared/theme.ts) + bouton
 public/                      # fichiers statiques (favicon)
-../.github/workflows/pages.yml  # tests + build des deux versions, publication GitHub Pages (React à /CV_AI/react/)
+../.github/workflows/pages.yml  # tests + build des deux versions, publication GitHub Pages (page de choix à /CV_AI/, Angular à /CV_AI/angular/, React à /CV_AI/react/)
 ```
 
 ## Commandes

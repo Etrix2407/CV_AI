@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>CV — choisir une version</title>
+    <meta name="description" content="CV en page web, disponible en version Angular et en version React." />
+    <link rel="icon" type="image/x-icon" href="angular/favicon.ico" />
+    <link rel="stylesheet" href="cv.css" />
+    <!-- Même thème que le CV : applique le choix mémorisé (shared/theme.ts) avant l'affichage. -->
+    <script>
+      try {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- Page d'accueil de GitHub Pages : publiée à la racine du site par .github/workflows/pages.yml. -->
+    <main class="page">
+      <section class="card" aria-labelledby="choix-titre">
+        <h1 class="card__title" id="choix-titre">Choisir une version du CV</h1>
+        <p>Le même CV, construit avec deux frameworks différents.</p>
+        <ul class="cv-list">
+          <li><a href="angular/">Version Angular</a></li>
+          <li><a href="react/">Version React</a></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

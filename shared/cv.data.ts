@@ -25,7 +25,7 @@ export const CV: Cv = {
   sections: [
     { id: 'projets', title: 'Projets' },
     { id: 'profil', title: 'Profil' },
-    { id: 'formation', title: 'Formation' },
+    { id: 'formation', title: 'Formations' },
     { id: 'experiences', title: 'Expériences' },
     { id: 'competences', title: 'Compétences' },
     { id: 'centres-d-interet', title: "Centres d'intérêt" },
